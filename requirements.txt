@@ -8,6 +8,7 @@ flask
 # ----------------------
 WTForms
 distribute
+raven
 
 # ----------------------
 # Flask Extension
