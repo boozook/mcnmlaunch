@@ -1,0 +1,33 @@
+# ----------------------
+# Flask
+# ----------------------
+flask
+
+# ----------------------
+# Third party library
+# ----------------------
+WTForms
+distribute
+
+# ----------------------
+# Flask Extension
+# ----------------------
+Flask-Mail
+Flask-Script
+Flask-WTF
+Flask-Cache
+Flask-DebugToolbar
+
+# ----------------------
+# Testing
+# ----------------------
+unittest2
+mock
+nose
+coverage
+
+# ----------------------
+# Production Server
+# ----------------------
+gevent
+gunicorn
