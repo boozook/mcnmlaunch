@@ -9,6 +9,7 @@ flask
 WTForms
 distribute
 raven
+mailsnake
 
 # ----------------------
 # Flask Extension
