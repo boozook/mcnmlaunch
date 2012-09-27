@@ -14,7 +14,7 @@ from mcnmlaunch import create_app
 
 manager = Manager(create_app)
 
-manager.add_command("runserver", Server('127.0.0.1',port=12345))
+manager.add_command("runserver", Server('127.0.0.1',port=1234))
 
 @manager.shell
 def make_shell_context():

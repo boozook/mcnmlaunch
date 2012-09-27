@@ -10,6 +10,7 @@ WTForms
 distribute
 raven
 mailsnake
+py_email_validation
 
 # ----------------------
 # Flask Extension
