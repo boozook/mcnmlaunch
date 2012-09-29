@@ -19,8 +19,7 @@ class ShowSplitView(View):
         variant = randint(1, 3)
 
         if variant == 1:
-	        context = {}
-	        return self.render_template(**context)
+            return redirect(url_for('frontend.index_a'))
         elif variant == 2:
             return redirect(url_for('frontend.index_b'))
         elif variant == 3:
