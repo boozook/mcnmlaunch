@@ -33,10 +33,10 @@ class StoreEmailView(View):
 
     def dispatch_request(self):
         if ('email' not in request.form) or (str(request.form['email'].encode('utf-8')) == str('')):
-            return jsonify({'success':False, 'msg':u'Заполните поле e-mail адреса.'})
+            return jsonify({'success':False, 'msg':u'Заполните поле e-mail адреса :)'})
 
         if not valid_email_address(str(request.form['email'].encode('utf-8'))):
-            return jsonify({'success':False, 'msg':u'E-mail адрес указан неверно.'})
+            return jsonify({'success':False, 'msg':u'E-mail адрес указан неверно :('})
 
         if mailchimp_api.listSubscribe(id='a972b72a63', email_address=str(request.form['email'].encode('utf-8')), double_optin=False, send_welcome=False):
             return jsonify({'success':True, 'msg':u'Спасибо за доверие! Мы не подведем :)'})
