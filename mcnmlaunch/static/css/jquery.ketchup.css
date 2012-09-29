@@ -1,0 +1,25 @@
+@import url(http://fonts.googleapis.com/css?family=Maven+Pro);
+
+
+.ketchup-error {
+position: absolute;
+  margin: -2px 10px 10px -180px;
+ 
+font-family: 'maven pro', Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	text-align: left;
+	color: #2a70f4;
+}
+
+
+#result{
+position: absolute;
+ margin: -161px 10px 10px 184px;	
+font-family: 'maven pro', Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	text-align: left;
+	color: #2a70f4;
+
+}

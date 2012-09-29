@@ -1,6 +1,8 @@
 <!DOCTYPE html >
 <html lang="ru">
 	<head>
+        {% block gacec %}{% endblock %}
+
 	    <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
@@ -10,244 +12,351 @@
         <meta name="viewport" content="width=device-width">
 
 	    <link rel="shortcut icon" href="{{ config.STATIC_URL }}/favicon.ico" />
+<!--
 	    <link href="{{ config.STATIC_URL }}/style.css" rel="stylesheet" type="text/css" />
-
+-->
 
         <script src="{{ config.STATIC_URL }}/js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 
+        {% block css %}
+		    <style type="text/css">
+				@import url(http://fonts.googleapis.com/css?family=Lobster);
+				@import url(http://fonts.googleapis.com/css?family=Maven+Pro);
+				@import url(http://fonts.googleapis.com/css?family=Tenor+Sans&subset=cyrillic);
+				::selection {
+					color: #fff;
+					background: #008fd5; /* Safari */
+				}
 
-	    <style type="text/css">
-	    	body:not(:root) {
-	    		filter: none;
-	    	}
+				::-moz-selection {
+					color: #fff;
+					background: #008fd5; /* Firefox */
+				}
 
-	    	a {
-	    		text-decoration: none;
-	    	}
+				#container ::selection {
+					color: #008fd5;
+					background: #fff; /* Safari */
+				}
+
+				#container ::-moz-selection {
+					color: #008fd5;
+					background: #fff; /* Firefox */
+				}
+
+				html {
+					padding: 0;
+					margin: 0;
+					width:100%;
+					height:100%;
+					font-size: 100.01%;
+				}
+				img{border:0}
+				#container, #footer{
+				    display: table-row;
+				    text-align: center;
+				}
+				#footer {
+				    height: 1px;
+				}
+				.cell {
+				    display: table-cell;
+				    vertical-align: middle;
+				}
+				#top{
+				    position:absolute;
+				    top: 0;
+				    left: 0;
+				    width: 100%;
+				    height: 32px;
+				    border-bottom: 2px solid #77B4C5;
+
+					background: #faa36d; /* Old browsers */
+					/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+					background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZhYTM2ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNzY1NGIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+					background: -moz-linear-gradient(top,  #faa36d 0%, #e7654b 100%); /* FF3.6+ */
+					background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#faa36d), color-stop(100%,#e7654b)); /* Chrome,Safari4+ */
+					background: -webkit-linear-gradient(top,  #faa36d 0%,#e7654b 100%); /* Chrome10+,Safari5.1+ */
+					background: -o-linear-gradient(top,  #faa36d 0%,#e7654b 100%); /* Opera 11.10+ */
+					background: -ms-linear-gradient(top,  #faa36d 0%,#e7654b 100%); /* IE10+ */
+					background: linear-gradient(to bottom,  #faa36d 0%,#e7654b 100%); /* W3C */
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa36d', endColorstr='#e7654b',GradientType=0 ); /* IE6-8 */
+				}
+				a#title{
+				    top: 5px;
+				    position: relative;
+				}
+				a#title img{
+				    height: 20px;
+				    width: 101px;
+				}
+				#main{
+				    margin-top: 15px;
+				    position: relative;
+				    width:640px!important;
+				    height:300px!important;
+				}
+				#bottom{
+				    position: absolute;
+				    bottom: 0px;
+				    left: 0;
+				    height: 300px;
+				    width: 100%;
+				}
+				#goods{
+				    margin: 10px 0;
+				    width:980px!important;
+				    height:88px!important;
+				}
+				#social{
+				    height: 40px;
+				    width: 160px;
+				    margin: 0 auto;
+				    background: url("{{ config.STATIC_URL }}/images/social.png") bottom center;
+				    position: relative;
+				}
+				#social a{
+				    display: block;
+				    height: 26px;
+				    width: 26px;
+				    position: absolute;
+				    opacity: 0;
+				    -moz-opacity: 0;
+				    -khtml-opacity: 0;
+				    filter: alpha(opacity=0);
+				}
+				#social a:hover{
+				    opacity: 1;
+				    -moz-opacity: 1;
+				    -khtml-opacity: 1;
+				    filter: alpha(opacity=100);
+				}
+				#social #fb{
+				    background: url("{{ config.STATIC_URL }}/images/social_fb.png");
+				    top:6.5px;
+				    left: 23px;
+				}
+				#social #ok{
+				    background: url("{{ config.STATIC_URL }}/images/social_ok.png");
+				    top:6.5px;
+				    left: 68.5px;
+				}
+				#social #vk{
+				    background: url("{{ config.STATIC_URL }}/images/social_vk.png");
+				    top:6px;
+				    left: 109.5px;
+				}
+		    	body:not(:root) {
+		    		filter: none;
+		    	}
+
+		    	a {
+		    		text-decoration: none;
+		    	}
 
 
-			.b-z-subscribe__text {
-				color: #707d88;
-				font-size: 14px;
-				padding-top: 13px;
-			}
+				.b-z-subscribe__text {
+					color: #707d88;
+					font-size: 14px;
+					padding-top: 13px;
+				}
 
-			.b-z-orange1 {
-				color: #fbf3f1;
-			}
+				.b-z-orange1 {
+					color: #fbf3f1;
+				}
 
-			.b-z-orange2 {
-				color: #f9cfbb;
-			}
+				.b-z-orange2 {
+					color: #f9cfbb;
+				}
 
-			.b-z-orange3 {
-				color: #f59263;
-			}
+				.b-z-orange3 {
+					color: #f59263;
+				}
 
-			.b-z-subscribe__text {
-				padding-top: 21px;
-			}
+				.b-z-subscribe__text {
+					padding-top: 21px;
+				}
 
-			.b-z-subscribe__form {
-				display: inline-block;
-				display: inline !ie;
-				zoom: 1 !ie;
-				vertical-align: top;
-				position: relative;
-				width: 531px;
-				height: 54px;
-				background-image: url('{{ config.STATIC_URL }}/images/formbg.png');
-				margin-top: 13px;
-			}
+				.b-z-subscribe__form {
+					display: inline-block;
+					display: inline !ie;
+					zoom: 1 !ie;
+					vertical-align: top;
+					position: relative;
+					width: 531px;
+					height: 54px;
+					background-image: url('{{ config.STATIC_URL }}/images/formbg.png');
+				}
+				input.b-z-subscribe__email {
+					background-clip: padding-box;
+					border: 1px solid #b1c8dc;
+					-moz-border-radius: 4px 4px 4px 4px;
+					border-radius: 4px 4px 4px 4px;
+					-moz-box-shadow: 1px 1px 3px #E9E9E9 inset;
+					box-shadow: 1px 1px 3px #E9E9E9 inset;
+					color: #252525;
+					font-size: 12px;
+					height: 21px;
+					line-height: 21px;
+					padding: 0 6px;
+					vertical-align: baseline;
 
-			#container .tagline {
-				font-family: 'Tenor Sans', Arial, sans-serif;
-				font-weight: 400;
-				font-size: 30px;
-				line-height: 38px;
-				text-align: center;
-				color: #fff;
-				position: relative;
-				margin: 30px 0 0px 0;
-			}
+					position: absolute;
+					top: 11px;
+					left: 10px;
+					height: 31px;
+					line-height: 31px;
+					width: 369px;
+					font-size: 14px;
+					color: #555555;
+				}
 
-			#header .coming-soon h3 {
-				font-family: 'Lobster', Georgia, serif;
-				font-size: 72px;
-				line-height: 80px;
-				font-weight: 400;
-				text-align: center;
-				text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
-				color: #fff;
-				margin-bottom: 80px;
-			}
+				a.submit {
+					display: inline-block;
+					display: inline !ie;
+					zoom: 1 !ie;
+					vertical-align: top;
 
-			.description  {
-				font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
-				font-weight: 500;
-				font-size: 16px;
-				line-height: 22px;
-				text-align: center;
-				color: #fff;
-			}
+					-moz-border-radius: 5px;
+					border-radius: 5px;
 
-			input.b-z-subscribe__email {
-				background-clip: padding-box;
-				border: 1px solid #b1c8dc;
-				-moz-border-radius: 4px 4px 4px 4px;
-				border-radius: 4px 4px 4px 4px;
-				-moz-box-shadow: 1px 1px 3px #E9E9E9 inset;
-				box-shadow: 1px 1px 3px #E9E9E9 inset;
-				color: #252525;
-				font-size: 12px;
-				height: 21px;
-				line-height: 21px;
-				padding: 0 6px;
-				vertical-align: baseline;
+					-moz-box-shadow: 0 1px 0 0 #EFB569 inset;
+					box-shadow: 0 1px 0 0 #EFB569 inset;
 
-				position: absolute;
-				top: 11px;
-				left: 10px;
-				height: 31px;
-				line-height: 31px;
-				width: 369px;
-				font-size: 14px;
-				color: #555555;
-			}
+	                font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
+					position: absolute;
+					right: 10px;
+					top: 11px;
+					color: white;
+					font-size: 16px;
+					height: 31px;
+					text-align: center;
+					line-height: 31px;
+					padding: 0px 12px;
+					border: 1px solid #BC5B06;
+					font-weight:500;
+					text-shadow: #AE6738 -1px -1px 0px;
 
-			a.submit {
-				display: inline-block;
-				display: inline !ie;
-				zoom: 1 !ie;
-				vertical-align: top;
+					background: #faa36d; /* Old browsers */
+					/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+					background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZhYTM2ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNzY1NGIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+					background: -moz-linear-gradient(top,  #faa36d 0%, #e7654b 100%); /* FF3.6+ */
+					background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#faa36d), color-stop(100%,#e7654b)); /* Chrome,Safari4+ */
+					background: -webkit-linear-gradient(top,  #faa36d 0%,#e7654b 100%); /* Chrome10+,Safari5.1+ */
+					background: -o-linear-gradient(top,  #faa36d 0%,#e7654b 100%); /* Opera 11.10+ */
+					background: -ms-linear-gradient(top,  #faa36d 0%,#e7654b 100%); /* IE10+ */
+					background: linear-gradient(to bottom,  #faa36d 0%,#e7654b 100%); /* W3C */
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa36d', endColorstr='#e7654b',GradientType=0 ); /* IE6-8 */
 
-				-moz-border-radius: 5px;
-				border-radius: 5px;
+				}
 
-				-moz-box-shadow: 0 1px 0 0 #EFB569 inset;
-				box-shadow: 0 1px 0 0 #EFB569 inset;
+				a.submit:hover {
+					background: #f4894b; /* Old browsers */
+					/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+					background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y0ODk0YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkZDRmMzkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+					background: -moz-linear-gradient(top,  #f4894b 0%, #dd4f39 100%); /* FF3.6+ */
+					background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f4894b), color-stop(100%,#dd4f39)); /* Chrome,Safari4+ */
+					background: -webkit-linear-gradient(top,  #f4894b 0%,#dd4f39 100%); /* Chrome10+,Safari5.1+ */
+					background: -o-linear-gradient(top,  #f4894b 0%,#dd4f39 100%); /* Opera 11.10+ */
+					background: -ms-linear-gradient(top,  #f4894b 0%,#dd4f39 100%); /* IE10+ */
+					background: linear-gradient(to bottom,  #f4894b 0%,#dd4f39 100%); /* W3C */
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4894b', endColorstr='#dd4f39',GradientType=0 ); /* IE6-8 */
 
-                font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
-				position: absolute;
-				right: 10px;
-				top: 11px;
-				color: white;
-				font-size: 16px;
-				height: 31px;
-				text-align: center;
-				line-height: 31px;
-				padding: 0px 12px;
-				border: 1px solid #BC5B06;
-				font-weight:500;
-				text-shadow: #AE6738 -1px -1px 0px;
+					text-decoration:none;
+				}
 
-				background: #faa36d; /* Old browsers */
-				/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-				background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZhYTM2ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNzY1NGIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-				background: -moz-linear-gradient(top,  #faa36d 0%, #e7654b 100%); /* FF3.6+ */
-				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#faa36d), color-stop(100%,#e7654b)); /* Chrome,Safari4+ */
-				background: -webkit-linear-gradient(top,  #faa36d 0%,#e7654b 100%); /* Chrome10+,Safari5.1+ */
-				background: -o-linear-gradient(top,  #faa36d 0%,#e7654b 100%); /* Opera 11.10+ */
-				background: -ms-linear-gradient(top,  #faa36d 0%,#e7654b 100%); /* IE10+ */
-				background: linear-gradient(to bottom,  #faa36d 0%,#e7654b 100%); /* W3C */
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa36d', endColorstr='#e7654b',GradientType=0 ); /* IE6-8 */
+				a.submit:active {
+					-moz-box-shadow: none;
+					box-shadow: none;
 
-			}
+					background: #f4894b; /* Old browsers */
+					/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+					background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y0ODk0YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUyJSIgc3RvcC1jb2xvcj0iI2RiM2QyNSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+					background: -moz-linear-gradient(top,  #f4894b 0%, #db3d25 52%); /* FF3.6+ */
+					background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f4894b), color-stop(52%,#db3d25)); /* Chrome,Safari4+ */
+					background: -webkit-linear-gradient(top,  #f4894b 0%,#db3d25 52%); /* Chrome10+,Safari5.1+ */
+					background: -o-linear-gradient(top,  #f4894b 0%,#db3d25 52%); /* Opera 11.10+ */
+					background: -ms-linear-gradient(top,  #f4894b 0%,#db3d25 52%); /* IE10+ */
+					background: linear-gradient(to bottom,  #f4894b 0%,#db3d25 52%); /* W3C */
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4894b', endColorstr='#db3d25',GradientType=0 ); /* IE6-8 */
+				}
 
-			a.submit:hover {
-				background: #f4894b; /* Old browsers */
-				/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-				background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y0ODk0YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkZDRmMzkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-				background: -moz-linear-gradient(top,  #f4894b 0%, #dd4f39 100%); /* FF3.6+ */
-				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f4894b), color-stop(100%,#dd4f39)); /* Chrome,Safari4+ */
-				background: -webkit-linear-gradient(top,  #f4894b 0%,#dd4f39 100%); /* Chrome10+,Safari5.1+ */
-				background: -o-linear-gradient(top,  #f4894b 0%,#dd4f39 100%); /* Opera 11.10+ */
-				background: -ms-linear-gradient(top,  #f4894b 0%,#dd4f39 100%); /* IE10+ */
-				background: linear-gradient(to bottom,  #f4894b 0%,#dd4f39 100%); /* W3C */
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4894b', endColorstr='#dd4f39',GradientType=0 ); /* IE6-8 */
-
-				text-decoration:none;
-			}
-
-			a.submit:active {
-				-moz-box-shadow: none;
-				box-shadow: none;
-
-				background: #f4894b; /* Old browsers */
-				/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-				background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y0ODk0YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUyJSIgc3RvcC1jb2xvcj0iI2RiM2QyNSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
-				background: -moz-linear-gradient(top,  #f4894b 0%, #db3d25 52%); /* FF3.6+ */
-				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f4894b), color-stop(52%,#db3d25)); /* Chrome,Safari4+ */
-				background: -webkit-linear-gradient(top,  #f4894b 0%,#db3d25 52%); /* Chrome10+,Safari5.1+ */
-				background: -o-linear-gradient(top,  #f4894b 0%,#db3d25 52%); /* Opera 11.10+ */
-				background: -ms-linear-gradient(top,  #f4894b 0%,#db3d25 52%); /* IE10+ */
-				background: linear-gradient(to bottom,  #f4894b 0%,#db3d25 52%); /* W3C */
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4894b', endColorstr='#db3d25',GradientType=0 ); /* IE6-8 */
-			}
-
-			a.submit:not(:root) {
-				filter: none;
-			}
-			#response {
-				padding-top: 10px;
-				display: none;
-				/*height: 32px;*/
-			}
-	    </style>
-
+				a.submit:not(:root) {
+					filter: none;
+				}
+				#response {
+					padding-top: 10px;
+					display: none;
+					/*height: 32px;*/
+				}
+		    </style>
+	    {% endblock %}
 	</head>
 	<body>
 	    <!--[if lt IE 7]>
 	        <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 	    <![endif]-->
-	    <div id="container">
-	        <div class="cell">
+        {% block main %}
+		    <div id="container">
+                <h2 class="tagline">Myconomy.ru - Сервис разумных покупок</h2>
 
-<!--
-		        <div id="top">
+			    <div data-picture data-alt="Somming Soon... запуск проекта в ноябре 2012 года">
+			        <div data-src="{{ config.STATIC_URL }}/images/main_320x149.png"></div>
+			        <div data-src="{{ config.STATIC_URL }}/images/main_640x298.png"  data-media="(min-height: 599px)"></div>
+			        <div data-src="{{ config.STATIC_URL }}/images/main_800x373.png"  data-media="(min-height: 740px)"></div>
+			        <div data-src="{{ config.STATIC_URL }}/images/main_1013x472.png" data-media="(min-height: 799px)"></div>
 
-		            <a href="#" id="title"><img src="{{ config.STATIC_URL }}/images/title.png" alt="myconomy"/></a>
+			        <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+			        <noscript>
+			            <img src="{{ config.STATIC_URL }}/images/main_800x373.png" alt="Somming Soon... запуск проекта в ноябре 2012 года">
+			        </noscript>
+			    </div>
+		        <p class="description">Удобно и просто находить лучшие предложения на товары. <br>Здесь и сейчас. Рядом. В одно движение. Специально для Вас.</p>
+		    </div>
+		    <div id="footer">
+		        <div class="cell">
+					</form>
+					<!-- Begin MailChimp Signup Form -->
+					<div class="b-z-subscribe__form">
+						<form id="signup" action="" method="get" name="joinForm" _lpchecked="1">
+							<input type="email" id="email" name="email" class="b-z-subscribe__email" placeholder="Введите E-mail" required="">
+							<a href="javascript:document.joinForm.submit();" name="submit" class="submit" style="">Получить приглашение</a>
+						</form>
+					</div>
+
+					<div id="response" class="description" style="display: block; "></div>
+					<!--End MailChimp Signup Form -->
+
+				    <div data-picture data-alt="Somming Soon... запуск проекта в ноябре 2012 года">
+				        <div data-src="{{ config.STATIC_URL }}/images/goods_320x29.png"></div>
+				        <div data-src="{{ config.STATIC_URL }}/images/goods_640x59.png"  data-media="(min-height: 599px)"></div>
+				        <div data-src="{{ config.STATIC_URL }}/images/goods_800x73.png"  data-media="(min-height: 740px)"></div>
+				        <div data-src="{{ config.STATIC_URL }}/images/goods_1013x93.png" data-media="(min-height: 799px)"></div>
+
+				        <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+				        <noscript>
+				            <img src="{{ config.STATIC_URL }}/images/goods_800x73.png" alt="Somming Soon... запуск проекта в ноябре 2012 года">
+				        </noscript>
+				    </div>
+
+		            <div id="social">
+		                <a id="fb" href="#"></a>
+		                <a id="ok" href="#"></a>
+		                <a id="vk" href="#"></a>
+		            </div>
 
 		        </div>
--->
-                <h2 class="tagline">Myconomy - cервис разумных покупок</h2>
-                <div class="coming-soon">
-	                <img src="{{ config.STATIC_URL }}/images/main.png" alt="main" id="main"/>
-                </div>
-		        <h4 class="description"> Проще и удобнее находить именно то, что нужно здесь и сейчас.<br>По ключевым словам, категориям, местоположению, рекомендациям и отзывам.<br>
-				Персонализированно. В несколько кликов. В любой точке мира.</h4>
-	        </div>
-	    </div>
-	    <div id="footer">
-	        <div class="cell">
-				</form>
-				<!-- Begin MailChimp Signup Form -->
-				<div class="b-z-subscribe__form">
-					<form id="signup" action="" method="get" name="joinForm" _lpchecked="1">
-						<input type="email" id="email" name="email" class="b-z-subscribe__email" placeholder="Введите E-mail" required="">
-						<a href="javascript:document.joinForm.submit();" name="submit" class="submit" style="">Получить приглашение</a>
-					</form>
-				</div>
-
-				<div id="response" class="description" style="display: block; "></div>
-				<!--End MailChimp Signup Form -->
-
-
-	            <img src="{{ config.STATIC_URL }}/images/goods.png" alt="goods" id="goods"/>
-
-	            <div id="social">
-	                <a id="fb" href="#"></a>
-	                <a id="ok" href="#"></a>
-	                <a id="vk" href="#"></a>
-	            </div>
-
-	        </div>
-	    </div>
-
+		    </div>
+        {% endblock %}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{ config.STATIC_URL }}/js/vendor/jquery-1.8.1.min.js"><\/script>')</script>
         <script type="text/javascript" src="{{ config.STATIC_URL }}/js/jquery.html5support.min.js"></script>
-        <script type="text/javascript" src="{{ config.STATIC_URL }}/js/jquery.backstretch.min.js"></script>
+        <script type="text/javascript" src="{{ config.STATIC_URL }}/js/mailing-list.js"></script>
+        <script type="text/javascript" src="{{ config.STATIC_URL }}/js/matchmedia.js"></script>
+        <script type="text/javascript" src="{{ config.STATIC_URL }}/js/picturefill.js"></script>
+		<style>
+			body { font-family: sans-serif }
+			img {  max-width: 100% }
+		</style>
 
         <script type="text/javascript">
         	$(document).ready(function() {
@@ -255,33 +364,6 @@
         	})
         </script>
 		<script type="text/javascript">
-			$(document).ready(function() {
-				//$('.tagline').hide().delay(750).fadeIn(750);
-				//$('.coming-soon').hide().delay(2250).fadeIn(2000);
-				//$('.description').hide().delay(3500).fadeIn(500);
-				//$('.cell').hide().delay(5000).fadeIn(500);
-				$('#footer').hide().delay(6000).fadeIn(2500);
-				});
-		</script>
-		<script>
-		    var images = [
-		        "{{ config.STATIC_URL }}/images/bg.jpg",
-		        "{{ config.STATIC_URL }}/images/bg0.jpg",
-		    ];
-		       $(images).each(function(){
-		       $('<img/>')[0].src = this;
-		    });
-		    var index = 0;
-		    $.backstretch(images[index], {speed: 1000});
-		    setInterval(function() {
-		        index = (index >= images.length - 1) ? 0 : index + 1;
-		        $.backstretch(images[index]);
-		    }, 5000);
-		</script>
-        <script type="text/javascript" src="{{ config.STATIC_URL }}/js/mailing-list.js"></script>
-
-		<script type="text/javascript">
-
 		  var _gaq = _gaq || [];
 		  _gaq.push(['_setAccount', 'UA-34784341-1']);
 		  _gaq.push(['_setDomainName', 'myconomy.ru']);
@@ -292,7 +374,7 @@
 		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		  })();
-
 		</script>
+        {% block js %}{% endblock %}
 	</body>
 </html>

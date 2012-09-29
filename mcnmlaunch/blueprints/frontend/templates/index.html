@@ -1,1 +1,96 @@
 {% extends "base_layout.html" %}
+
+{% block gacec %}
+	<!-- Google Analytics Content Experiment code -->
+	<script>function utmx_section(){}function utmx(){}(function(){var
+	k='63981256-0',d=document,l=d.location,c=d.cookie;
+	if(l.search.indexOf('utm_expid='+k)>0)return;
+	function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+	indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+	length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+	'<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+	'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+	'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+	valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+	'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+	</script><script>utmx('url','A/B');</script>
+	<!-- End of Google Analytics Content Experiment code -->
+{% endblock %}
+
+{% block css %}
+    {{ super() }}
+	<style type="text/css">
+		body {
+			font-family: Helvetica, Arial, sans-serif;
+			padding: 0;
+			margin: 0;
+			width:100%;
+			height:100%;
+		    display: table;
+			background: url('{{ config.STATIC_URL }}/images/white.png') no-repeat 50% 0%, url('{{ config.STATIC_URL }}/images/pattern.png'); /* Chrome10+,Safari5.1+ */
+		}
+		#container .tagline {
+			font-family: 'Tenor Sans', Arial, sans-serif;
+			font-weight: 400;
+			font-size: 30px;
+			line-height: 38px;
+			text-align: center;
+			color: #fff;
+			position: relative;
+			margin: 30px 0 0px 0;
+		}
+
+		#header .coming-soon h3 {
+			font-family: 'Lobster', Georgia, serif;
+			font-size: 72px;
+			line-height: 80px;
+			font-weight: 400;
+			text-align: center;
+			text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+			color: #fff;
+			margin-bottom: 80px;
+		}
+
+		.description  {
+			font-family: 'Tenor Sans', Helvetica, Arial, sans-serif;
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 22px;
+			text-align: center;
+			color: #fff;
+		}
+
+	</style>
+{% endblock %}
+
+
+{% block js %}
+    {{ super() }}
+	<script type="text/javascript" src="{{ config.STATIC_URL }}/js/jquery.backstretch.min.js"></script>
+<!--
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//$('.tagline').hide().delay(750).fadeIn(750);
+			//$('.coming-soon').hide().delay(2250).fadeIn(2000);
+			//$('.description').hide().delay(3500).fadeIn(500);
+			//$('.cell').hide().delay(5000).fadeIn(500);
+			$('#footer').hide().delay(6000).fadeIn(2500);
+			});
+	</script>
+-->
+	<script>
+	    var images = [
+	        "{{ config.STATIC_URL }}/images/bg.jpg",
+	        "{{ config.STATIC_URL }}/images/bg0.jpg",
+	    ];
+	       $(images).each(function(){
+	       $('<img/>')[0].src = this;
+	    });
+	    var index = 0;
+	    $.backstretch(images[index], {speed: 2000});
+	    setInterval(function() {
+	        index = (index >= images.length - 1) ? 0 : index + 1;
+	        $.backstretch(images[index]);
+	    }, 5000);
+	</script>
+{% endblock %}
