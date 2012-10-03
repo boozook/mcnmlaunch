@@ -6,8 +6,8 @@
 	    <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>{% block title %}Myconomy - сервис разумных покупок!{% endblock %}</title>
-		<meta name="description" content="Myconomy - сервис разумных покупок. С myconomy планировать и совершать покупки в магазинах удобнее и быстрее.">
+		<title>{% block title %}Myconomy.ru - сервис разумных покупок!{% endblock %}</title>
+		<meta name="description" content="Myconomy.ru - Удобно и просто находить лучшие предложения на товары. Здесь и сейчас. Рядом. В одно движение. Специально для Вас.">
 		<meta name="author" content="Applicatura">
         <meta name="viewport" content="width=device-width">
 
@@ -144,6 +144,22 @@
 				    background: url("{{ config.STATIC_URL }}/images/social_vk.png");
 				    top:6px;
 				    left: 109.5px;
+				}
+				#right {
+				    float: right;
+				    padding: 10px;
+				}
+				.butsoc {
+				    display: block;
+				    padding-left: 5px;
+				    position: relative;
+				    right: 0;
+				}
+				.butsoc a {
+				    opacity: 0.5;
+				}
+				.butsoc a:hover {
+				    opacity: 1;
 				}
 		    	body:not(:root) {
 		    		filter: none;
@@ -314,19 +330,33 @@
 		    </div>
 		    <div id="footer">
 		        <div class="cell">
-					</form>
-					<!-- Begin MailChimp Signup Form -->
-					<div class="b-z-subscribe__form">
-						<form id="signup" action="" method="get" name="joinForm" _lpchecked="1">
-							<input type="email" id="email" name="email" class="b-z-subscribe__email" placeholder="Введите E-mail" required="">
-							<a href="javascript:document.joinForm.submit();" name="submit" class="submit" style="">Получить приглашение</a>
-						</form>
+                    <div style="display: inline-block;">
+						<!-- Begin MailChimp Signup Form -->
+						<div class="b-z-subscribe__form">
+							<form id="signup" action="" method="get" name="joinForm" _lpchecked="1">
+								<input type="email" id="email" name="email" class="b-z-subscribe__email" placeholder="Введите E-mail" required="">
+								<a href="javascript:document.joinForm.submit();" name="submit" class="submit" style="">Получить приглашение</a>
+							</form>
+						</div>
+						<div id="right">
+							<div class="butsoc">
+							  <a onclick="window.open(this.href, 'Опубликовать ссылку во Вконтакте', 'width=800,height=400'); return false" href="http://vkontakte.ru/share.php?url=http://myconomy.ru" style="margin-left:10px;">
+								<img width="" border="0" height="" alt="Мне нравится" src="{{ config.STATIC_URL }}/images/vkontakte.png">
+						      </a>
+						      <a onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false" href="https://www.facebook.com/sharer/sharer.php?u=http://myconomy.ru" style="margin-left:10px;">
+							    <img width="" border="0" height="" alt="Facebook Like" src="{{ config.STATIC_URL }}/images/facebook.png">
+							  </a>
+							  <a href="http://twitter.com/intent/tweet?text=Myconomy.ru+-+Удобно+и+просто+находить+лучшие+предложения+на+товары.+Здесь+и+сейчас.+Рядом.+В+одно+движение.+Специально+для+Вас." style="margin-left:10px;">
+								<img width="" border="0" height="" alt="Twitter" src="{{ config.STATIC_URL }}/images/twitter.png">
+							  </a>
+							</div>
+						</div>
 					</div>
 
 					<div id="response" class="description" style="display: block; "></div>
 					<!--End MailChimp Signup Form -->
 
-				    <div data-picture data-alt="Somming Soon... запуск проекта в ноябре 2012 года">
+				    <div data-picture data-alt="Somming Soon... запуск проекта в ноябре 2012 года" style="padding: 0 0 20px">
 				        <div data-src="{{ config.STATIC_URL }}/images/goods_320x29.png"></div>
 				        <div data-src="{{ config.STATIC_URL }}/images/goods_640x59.png"  data-media="(min-height: 550px)"></div>
 				        <div data-src="{{ config.STATIC_URL }}/images/goods_800x73.png"  data-media="(min-height: 600px)"></div>
@@ -337,12 +367,29 @@
 				            <img src="{{ config.STATIC_URL }}/images/goods_800x73.png" alt="Somming Soon... запуск проекта в ноябре 2012 года">
 				        </noscript>
 				    </div>
+<!--
+					<div class="butsoc">
 
-		            <div id="social">
-		                <a id="fb" href="https://www.facebook.com/Myconomy"></a>
-		                <a id="ok" href="#"></a>
-		                <a id="vk" href="http://vk.com/myconomy"></a>
-		            </div>
+					  <a style="text-decoration:none; margin-left:10px;" rel="publisher" href="https://plus.google.com">
+						<img width="" height="" alt="" src="{{ config.STATIC_URL }}/images/gplus-32.png">
+					  </a>
+
+					  <a onclick="window.open(this.href, 'Опубликовать ссылку во Вконтакте', 'width=800,height=400'); return false" href="http://vkontakte.ru/share.php?url=http://myconomy.ru" style="margin-left:10px;">
+						<img width="" border="0" height="" alt="Мне нравится" src="{{ config.STATIC_URL }}/images/vkontakte.png">
+				      </a>
+				      <a onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false" href="https://www.facebook.com/sharer/sharer.php?u=http://myconomy.ru" style="margin-left:10px;">
+					    <img width="" border="0" height="" alt="Facebook Like" src="{{ config.STATIC_URL }}/images/facebook.png">
+					  </a>
+					  <a href="http://twitter.com/intent/tweet?text=Myconomy.ru+-+Удобно+и+просто+находить+лучшие+предложения+на+товары.+Здесь+и+сейчас.+Рядом.+В+одно+движение.+Специально+для+Вас." style="margin-left:10px;">
+						<img width="" border="0" height="" alt="Twitter" src="{{ config.STATIC_URL }}/images/twitter.png">
+					  </a>
+
+					  <a href="http://myconomy.livejournal.com/" style="margin-left:10px;">
+						<img width="" border="0" height="" alt="Мы в livejournal" src="{{ config.STATIC_URL }}/images/livejournal.png">
+					  </a>
+
+					</div>
+-->
 
 		        </div>
 		    </div>
