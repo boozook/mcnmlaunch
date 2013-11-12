@@ -1,36 +1,21 @@
-# ----------------------
-# Flask
-# ----------------------
-flask
-
-# ----------------------
-# Third party library
-# ----------------------
-WTForms
 distribute
+Fabric
+Flask
+Flask-Cache
+Flask-Classy
+Flask-Script
+Flask-Injector
+
 raven
-mailsnake
+mailchimp
 py_email_validation
 
-# ----------------------
-# Flask Extension
-# ----------------------
-Flask-Mail
-Flask-Script
-Flask-WTF
-Flask-Cache
-Flask-DebugToolbar
+dealer
 
-# ----------------------
-# Testing
-# ----------------------
 unittest2
 mock
 nose
 coverage
 
-# ----------------------
-# Production Server
-# ----------------------
 gevent
 gunicorn

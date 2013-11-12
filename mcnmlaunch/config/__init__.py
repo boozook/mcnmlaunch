@@ -1,6 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from os import path as op
-
 
 ROOTDIR = op.abspath(
     op.dirname(
-        op.dirname(__file__)))
+      op.dirname(
+        op.dirname(__file__))))
